@@ -43,19 +43,34 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php
+                                $items = [
+                                    [
+                                        "title" => "Reports",
+                                        "tags" => "reports file"
+                                    ],
+                                    [
+                                        "title" => "Analytics",
+                                        "tags" => "analytics graphs"
+                                    ],
+                                    [
+                                        "title" => "Export",
+                                        "tags" => "export download"
+                                    ],
+                                    [
+                                        "title" => "Storage",
+                                        "tags" => "storage"
+                                    ],
+                                ];
+                            ?>
                             <ul id="js-list-msg" class="list-group px-2 pb-2 js-list-filter">
-                                <li class="list-group-item">
-                                    <span data-filter-tags="reports file">Reports</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span data-filter-tags="analytics graphs">Analytics</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span data-filter-tags="export download">Export</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span data-filter-tags="storage">Storage</span>
-                                </li>
+                                <?php foreach ($items as $item): ?>
+                                    <li class="list-group-item">
+                                        <span data-filter-tags="<?php echo $item['tags']; ?>">
+                                            <?php echo $item['title'] ?>
+                                        </span>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                             <div class="filter-message js-filter-message mt-0 fs-sm"></div>
                         </div>
