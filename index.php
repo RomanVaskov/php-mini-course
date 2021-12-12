@@ -33,33 +33,51 @@
             <div class="panel-container show">
                 <div class="panel-content">
                     <?php
-                        $links = [
+                        $items = [
                             [
-                                "title" => "Главная",
-                                "href" => "example.com/",
-                                "is_link" => true
+                                "title" => "My Tasks",
+                                "value" => "130 / 500",
+                                "bg" => "bg-fusion-400",
+                                "width" => "65%",
+                                "valuenow" => "65",
+                                "valuemin" => "0",
+                                "valuemax" => "100"
                             ],[
-                                "title" => "PHP",
-                                "href" => "example.com/php",
-                                "is_link" => true
+                                "title" => "Transfered",
+                                "value" => "440 TB",
+                                "bg" => "bg-success-500",
+                                "width" => "34%",
+                                "valuenow" => "34",
+                                "valuemin" => "0",
+                                "valuemax" => "100"
                             ],[
-                                "title" => "Функции",
-                                "href" => "",
-                                "is_link" => false
-                            ],
+                                "title" => "Bugs Squashed",
+                                "value" => "77%",
+                                "bg" => "bg-info-400",
+                                "width" => "77%",
+                                "valuenow" => "77",
+                                "valuemin" => "0",
+                                "valuemax" => "100"
+                            ],[
+                                "title" => "User Testing",
+                                "value" => "7 days",
+                                "bg" => "bg-primary-300",
+                                "width" => "84%",
+                                "valuenow" => "84",
+                                "valuemin" => "0",
+                                "valuemax" => "100"
+                            ]
                         ];
                     ?>
-                    <ol class="breadcrumb page-breadcrumb">
-                        <?php foreach ($links as $link): ?>
-                            <?php if ($link['is_link']): ?>
-                                <li class="breadcrumb-item">
-                                    <a href="<?php echo $link['href']; ?>"><?php echo $link['title']; ?></a>
-                                </li>
-                                <?php else: ?>
-                                    <li class="breadcrumb-item active"><?php echo $link['title']; ?></li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ol>
+                    <?php foreach ($items as $item): ?>
+                        <div class="d-flex mt-2">
+                            <?php echo $item['title']; ?>
+                            <span class="d-inline-block ml-auto"><?php echo $item['value']; ?></span>
+                        </div>
+                        <div class="progress progress-sm mb-3">
+                            <div class="progress-bar <?php echo $item['bg']; ?>" role="progressbar" style="width: <?php echo $item['width'];?>;" aria-valuenow="<?php echo $item['valuenow'];?>" aria-valuemin="<?php echo $item['valuemin'];?>" aria-valuemax="<?php echo $item['valuemax'];?>"></div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
