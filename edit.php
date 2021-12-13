@@ -1,9 +1,9 @@
 <?php
 $pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM students WHERE id=:id";
 $statement = $pdo->prepare($sql);
-$statement->execute();
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement->execute($_GET);
+$user = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="mod-bg-1 mod-nav-link ">
 <main id="js-page-content" role="main" class="page-content">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div id="panel-1" class="panel">
             <div class="panel-hdr">
                 <h2>
@@ -51,23 +51,26 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Username</th>
-                                <th>Actions</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($users as $user): ?>
-                                <tr>
+                            <tr>
+                                <form action="update.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $user['id']; ?>" />
                                     <th scope="row"><?php echo $user['id']; ?></th>
-                                    <td><?php echo $user['first_name']; ?></td>
-                                    <td><?php echo $user['last_name']; ?></td>
-                                    <td><?php echo $user['username']; ?></td>
                                     <td>
-                                        <a href="show.php?id=<?php echo $user['id']; ?>" class="btn btn-info">Просмотр</a>
-                                        <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning">Изменить</a>
-                                        <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">Удалить</a>
+                                        <input type="text" name="first_name" value="<?php echo $user['first_name']; ?>"/>
                                     </td>
-                                </tr>
-                            <?php endforeach; ?>
+                                    <td>
+                                        <input type="text" name="last_name" value="<?php echo $user['last_name']; ?>"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="username" value="<?php echo $user['username']; ?>"/>
+                                    </td>
+                                    <td><button type="submit" class="btn btn-warning">Изменить</button></td>
+                                </form>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

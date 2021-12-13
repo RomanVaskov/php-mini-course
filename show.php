@@ -1,9 +1,9 @@
 <?php
 $pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM students WHERE id=:id";
 $statement = $pdo->prepare($sql);
-$statement->execute();
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement->execute($_GET);
+$user = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -51,23 +51,15 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Username</th>
-                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($users as $user): ?>
                                 <tr>
                                     <th scope="row"><?php echo $user['id']; ?></th>
                                     <td><?php echo $user['first_name']; ?></td>
                                     <td><?php echo $user['last_name']; ?></td>
                                     <td><?php echo $user['username']; ?></td>
-                                    <td>
-                                        <a href="show.php?id=<?php echo $user['id']; ?>" class="btn btn-info">Просмотр</a>
-                                        <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning">Изменить</a>
-                                        <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">Удалить</a>
-                                    </td>
                                 </tr>
-                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
