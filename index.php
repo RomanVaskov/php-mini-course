@@ -1,3 +1,44 @@
+<?php
+$users = [
+    [
+        "name" => "Sunny A. (UI/UX Expert)",
+        "role" => "Lead Author",
+        "img" => "img/demo/authors/sunny.png",
+        "img_alt" => "Sunny A.",
+        "twitter" => "https://twitter.com/@myplaneticket",
+        "twitter_account" => "@myplaneticket",
+        "email" => "https://wrapbootstrap.com/user/myorange",
+        "email_title" => "Contact Sunny"
+    ],[
+        "name" => "Jos K. (ASP.NET Developer)",
+        "role" => "Partner &amp; Contributor",
+        "img" => "img/demo/authors/josh.png",
+        "img_alt" => "Jos K.",
+        "twitter" => "https://twitter.com/@atlantez",
+        "twitter_account" => "@atlantez",
+        "email" => "https://wrapbootstrap.com/user/Walapa",
+        "email_title" => "Contact Jos"
+    ],[
+        "name" => "Jovanni L. (PHP Developer)",
+        "role" => "Partner &amp; Contributor",
+        "img" => "img/demo/authors/jovanni.png",
+        "img_alt" => "Jovanni Lo",
+        "twitter" => "https://twitter.com/@lodev09",
+        "twitter_account" => "@lodev09",
+        "email" => "https://wrapbootstrap.com/user/lodev09",
+        "email_title" => "Contact Jovanni"
+    ],[
+        "name" => "Roberto R. (Rails Developer)",
+        "role" => "Partner &amp; Contributor",
+        "img" => "img/demo/authors/roberto.png",
+        "img_alt" => "Roberto R.",
+        "twitter" => "https://twitter.com/@sildur",
+        "twitter_account" => "@sildur",
+        "email" => "https://wrapbootstrap.com/user/sildur",
+        "email_title" => "Contact Roberto"
+    ],
+];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,52 +73,23 @@
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <?php
-                        $items = [
-                            [
-                                "title" => "My Tasks",
-                                "value" => "130 / 500",
-                                "bg" => "bg-fusion-400",
-                                "width" => "65%",
-                                "valuenow" => "65",
-                                "valuemin" => "0",
-                                "valuemax" => "100"
-                            ],[
-                                "title" => "Transfered",
-                                "value" => "440 TB",
-                                "bg" => "bg-success-500",
-                                "width" => "34%",
-                                "valuenow" => "34",
-                                "valuemin" => "0",
-                                "valuemax" => "100"
-                            ],[
-                                "title" => "Bugs Squashed",
-                                "value" => "77%",
-                                "bg" => "bg-info-400",
-                                "width" => "77%",
-                                "valuenow" => "77",
-                                "valuemin" => "0",
-                                "valuemax" => "100"
-                            ],[
-                                "title" => "User Testing",
-                                "value" => "7 days",
-                                "bg" => "bg-primary-300",
-                                "width" => "84%",
-                                "valuenow" => "84",
-                                "valuemin" => "0",
-                                "valuemax" => "100"
-                            ]
-                        ];
-                    ?>
-                    <?php foreach ($items as $item): ?>
-                        <div class="d-flex mt-2">
-                            <?php echo $item['title']; ?>
-                            <span class="d-inline-block ml-auto"><?php echo $item['value']; ?></span>
+                    <div class="d-flex flex-wrap demo demo-h-spacing mt-3 mb-3">
+                        <?php foreach ($users as $user): ?>
+                        <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
+                            <img src="<?php echo $user['img'];?>" alt="<?php echo $user['img_alt'];?>" class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
+                            <div class="ml-2 mr-3">
+                                <h5 class="m-0">
+                                    <?php echo $user['name'];?>
+                                    <small class="m-0 fw-300">
+                                        <?php echo $user['role'];?>
+                                    </small>
+                                </h5>
+                                <a href="<?php echo $user['twitter'];?>" class="text-info fs-sm" target="_blank"><?php echo $user['twitter_account'];?></a> -
+                                <a href="<?php echo $user['email'];?>" class="text-info fs-sm" target="_blank" title="<?php echo $user['email_title'];?>"><i class="fal fa-envelope"></i></a>
+                            </div>
                         </div>
-                        <div class="progress progress-sm mb-3">
-                            <div class="progress-bar <?php echo $item['bg']; ?>" role="progressbar" style="width: <?php echo $item['width'];?>;" aria-valuenow="<?php echo $item['valuenow'];?>" aria-valuemin="<?php echo $item['valuemin'];?>" aria-valuemax="<?php echo $item['valuemax'];?>"></div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
