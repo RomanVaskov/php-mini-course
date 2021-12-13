@@ -1,47 +1,9 @@
 <?php
-$users = [
-    [
-        "name" => "Sunny A. (UI/UX Expert)",
-        "role" => "Lead Author",
-        "img" => "img/demo/authors/sunny.png",
-        "img_alt" => "Sunny A.",
-        "twitter" => "https://twitter.com/@myplaneticket",
-        "twitter_account" => "@myplaneticket",
-        "email" => "https://wrapbootstrap.com/user/myorange",
-        "email_title" => "Contact Sunny",
-        "status" => "active"
-    ],[
-        "name" => "Jos K. (ASP.NET Developer)",
-        "role" => "Partner &amp; Contributor",
-        "img" => "img/demo/authors/josh.png",
-        "img_alt" => "Jos K.",
-        "twitter" => "https://twitter.com/@atlantez",
-        "twitter_account" => "@atlantez",
-        "email" => "https://wrapbootstrap.com/user/Walapa",
-        "email_title" => "Contact Jos",
-        "status" => "active"
-    ],[
-        "name" => "Jovanni L. (PHP Developer)",
-        "role" => "Partner &amp; Contributor",
-        "img" => "img/demo/authors/jovanni.png",
-        "img_alt" => "Jovanni Lo",
-        "twitter" => "https://twitter.com/@lodev09",
-        "twitter_account" => "@lodev09",
-        "email" => "https://wrapbootstrap.com/user/lodev09",
-        "email_title" => "Contact Jovanni",
-        "status" => "banned"
-    ],[
-        "name" => "Roberto R. (Rails Developer)",
-        "role" => "Partner &amp; Contributor",
-        "img" => "img/demo/authors/roberto.png",
-        "img_alt" => "Roberto R.",
-        "twitter" => "https://twitter.com/@sildur",
-        "twitter_account" => "@sildur",
-        "email" => "https://wrapbootstrap.com/user/sildur",
-        "email_title" => "Contact Roberto",
-        "status" => "banned"
-    ],
-];
+$pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
+$sql = "SELECT * FROM users";
+$statement = $pdo->prepare($sql);
+$statement->execute();
+$users = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
