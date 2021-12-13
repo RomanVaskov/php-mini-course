@@ -8,7 +8,8 @@ $users = [
         "twitter" => "https://twitter.com/@myplaneticket",
         "twitter_account" => "@myplaneticket",
         "email" => "https://wrapbootstrap.com/user/myorange",
-        "email_title" => "Contact Sunny"
+        "email_title" => "Contact Sunny",
+        "status" => "active"
     ],[
         "name" => "Jos K. (ASP.NET Developer)",
         "role" => "Partner &amp; Contributor",
@@ -17,7 +18,8 @@ $users = [
         "twitter" => "https://twitter.com/@atlantez",
         "twitter_account" => "@atlantez",
         "email" => "https://wrapbootstrap.com/user/Walapa",
-        "email_title" => "Contact Jos"
+        "email_title" => "Contact Jos",
+        "status" => "active"
     ],[
         "name" => "Jovanni L. (PHP Developer)",
         "role" => "Partner &amp; Contributor",
@@ -26,7 +28,8 @@ $users = [
         "twitter" => "https://twitter.com/@lodev09",
         "twitter_account" => "@lodev09",
         "email" => "https://wrapbootstrap.com/user/lodev09",
-        "email_title" => "Contact Jovanni"
+        "email_title" => "Contact Jovanni",
+        "status" => "banned"
     ],[
         "name" => "Roberto R. (Rails Developer)",
         "role" => "Partner &amp; Contributor",
@@ -35,7 +38,8 @@ $users = [
         "twitter" => "https://twitter.com/@sildur",
         "twitter_account" => "@sildur",
         "email" => "https://wrapbootstrap.com/user/sildur",
-        "email_title" => "Contact Roberto"
+        "email_title" => "Contact Roberto",
+        "status" => "banned"
     ],
 ];
 ?>
@@ -57,6 +61,7 @@ $users = [
     <link rel="stylesheet" media="screen, print" href="css/fa-solid.css">
     <link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
     <link rel="stylesheet" media="screen, print" href="css/fa-regular.css">
+    <style>.banned{opacity: .4;}</style>
 </head>
 <body class="mod-bg-1 mod-nav-link ">
 <main id="js-page-content" role="main" class="page-content">
@@ -75,7 +80,7 @@ $users = [
                 <div class="panel-content">
                     <div class="d-flex flex-wrap demo demo-h-spacing mt-3 mb-3">
                         <?php foreach ($users as $user): ?>
-                        <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
+                        <div class="<?php echo $user['status'] == "banned" ? "banned" : ""; ?> rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
                             <img src="<?php echo $user['img'];?>" alt="<?php echo $user['img_alt'];?>" class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
                             <div class="ml-2 mr-3">
                                 <h5 class="m-0">
