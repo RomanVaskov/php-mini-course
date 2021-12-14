@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -36,10 +37,17 @@ session_start();
                 <div class="panel-content">
                     <div class="panel-content">
                         <div class="form-group">
-                            <div class="alert alert-info fade show" role="alert">
-                                Кнопка была нажата: <b><?php echo $_SESSION['count']; ?></b> раз
+                            <div class="alert alert-danger fade show" role="alert">
+                                Неверный логин или пароль
                             </div>
                             <form action="send.php" method="post">
+                                <div class="form-group">
+                                    <label class="form-label" for="simpleinput">Email</label>
+                                    <input name="email" type="text" id="simpleinput" class="form-control">
+                                </div>
+
+                                <label class="form-label" for="simpleinput">Password</label>
+                                <input name="password" type="password" id="simpleinput" class="form-control">
                                 <button class="btn btn-success mt-3" type="submit">Submit</button>
                             </form>
                         </div>
@@ -61,5 +69,6 @@ session_start();
 </script>
 </body>
 </html>
+
 
 
