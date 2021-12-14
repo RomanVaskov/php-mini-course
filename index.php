@@ -22,7 +22,6 @@ session_start();
 </head>
 <body class="mod-bg-1 mod-nav-link ">
 <main id="js-page-content" role="main" class="page-content">
-
     <div class="col-md-6">
         <div id="panel-1" class="panel">
             <div class="panel-hdr">
@@ -41,7 +40,7 @@ session_start();
                             <?php if (isset($_SESSION['danger'])): ?>
                                 <div class="alert alert-danger fade show" role="alert">
                                     <?php echo $_SESSION['danger'];
-                                        unset($_SESSION['danger']);
+                                    unset($_SESSION['danger']);
                                     ?>
                                 </div>
                             <?php endif; ?>
@@ -53,8 +52,13 @@ session_start();
                                 </div>
                             <?php endif; ?>
                             <form action="send.php" method="post">
-                                <label class="form-label" for="simpleinput">Text</label>
-                                <input type="text" id="simpleinput" class="form-control" name="text">
+                                <div class="form-group">
+                                    <label class="form-label" for="simpleinput">Email</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="email">
+                                </div>
+
+                                <label class="form-label" for="simpleinput">Password</label>
+                                <input type="password" id="simpleinput" class="form-control" name="password">
                                 <button class="btn btn-success mt-3" type="submit">Submit</button>
                             </form>
                         </div>
@@ -76,4 +80,5 @@ session_start();
 </script>
 </body>
 </html>
+
 

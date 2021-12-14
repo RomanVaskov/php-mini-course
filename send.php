@@ -1,28 +1,29 @@
 <?php
 session_start();
 
-$text = $_POST['text'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 $pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
 
-$sql = "SELECT * FROM texts WHERE text=:text";
+$sql = "SELECT * FROM accounts WHERE email=:email";
 $statement = $pdo->prepare($sql);
-$statement->execute(['text' => $text]);
+$statement->execute(['email' => $email]);
 $task = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!empty($task)) {
-    $message = "You should check in on some of those fields below.";
+    $message = "Этот эл адрес уже занят другим пользователем.";
     $_SESSION['danger'] = $message;
 
     header("Location: /index.php");
     exit;
 }
 
-$sql = "INSERT INTO texts (text) VALUES (:text)";
+$sql = "INSERT INTO accounts (email,password) VALUES (:email,:password)";
 $statement = $pdo->prepare($sql);
-$statement->execute(['text' => $text]);
+$statement->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
 
-$message = "The entry has been successfully created.";
+$message = "Вы успешно зарегистрировались";
 $_SESSION['success'] = $message;
 
 header('Location: /index.php');
