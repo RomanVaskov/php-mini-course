@@ -24,8 +24,8 @@ if (empty($task)) {
     header("Location: /index.php");
     exit;
 } elseif (password_verify($password, $task['password']) && $task['email'] == $email) {
-    $message = "Вы успешно авторизовались";
-    $_SESSION['success'] = $message;
+    $message = "Здравствуйте, " . $task['email'];
+    $_SESSION['message'] = $message;
 
-    header('Location: /index.php');
+    header('Location: /user.php');
 }
