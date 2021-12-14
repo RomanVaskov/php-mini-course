@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +38,20 @@
                 <div class="panel-content">
                     <div class="panel-content">
                         <div class="form-group">
+                            <?php if (isset($_SESSION['danger'])): ?>
+                                <div class="alert alert-danger fade show" role="alert">
+                                    <?php echo $_SESSION['danger'];
+                                        unset($_SESSION['danger']);
+                                    ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['success'])): ?>
+                                <div class="alert alert-success fade show" role="alert">
+                                    <?php echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                                    ?>
+                                </div>
+                            <?php endif; ?>
                             <form action="send.php" method="post">
                                 <label class="form-label" for="simpleinput">Text</label>
                                 <input type="text" id="simpleinput" class="form-control" name="text">
