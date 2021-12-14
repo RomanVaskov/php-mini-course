@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -37,16 +36,10 @@ session_start();
                 <div class="panel-content">
                     <div class="panel-content">
                         <div class="form-group">
-                            <?php if (isset($_SESSION['message'])): ?>
-                                <div class="alert alert-info fade show" role="alert">
-                                    <?php echo $_SESSION['message']; ?>
-                                </div>
-                            <?php endif; ?>
+                            <div class="alert alert-info fade show" role="alert">
+                                Кнопка была нажата: <b><?php echo $_SESSION['count']; ?></b> раз
+                            </div>
                             <form action="send.php" method="post">
-                                <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Text</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="text">
-                                </div>
                                 <button class="btn btn-success mt-3" type="submit">Submit</button>
                             </form>
                         </div>

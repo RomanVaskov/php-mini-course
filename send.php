@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-$text = $_POST['text'];
-
-$pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
-
-$sql = "INSERT INTO texts (text) VALUES (:text)";
-$statement = $pdo->prepare($sql);
-$statement->execute(['text' => $text]);
-
-$message = "Ваше сообщение выводится тут - " . $text;
-$_SESSION['message'] = $message;
+!isset($_SESSION['count']) ? $_SESSION['count'] = 0 : $_SESSION['count']++;
 
 header('Location: /index.php');
-?>
+
