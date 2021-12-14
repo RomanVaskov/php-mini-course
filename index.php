@@ -1,5 +1,6 @@
 <?php
 session_start();
+$images = $_SESSION['images'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,44 +23,65 @@ session_start();
 </head>
 <body class="mod-bg-1 mod-nav-link ">
 <main id="js-page-content" role="main" class="page-content">
-    <div class="col-md-6">
-        <div id="panel-1" class="panel">
-            <div class="panel-hdr">
-                <h2>
-                    Задание
-                </h2>
-                <div class="panel-toolbar">
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Задание
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-content">
+                            <div class="form-group">
+                                <form action="send.php" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label class="form-label" for="simpleinput">Image</label>
+                                        <input type="file" id="simpleinput" class="form-control" name="file[]" multiple>
+                                    </div>
+                                    <button class="btn btn-success mt-3" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <div class="panel-content">
-                        <div class="form-group">
-                            <?php if (isset($_SESSION['danger'])): ?>
-                                <div class="alert alert-danger fade show" role="alert">
-                                    <?php echo $_SESSION['danger'];
-                                    unset($_SESSION['danger']);
-                                    ?>
-                                </div>
-                            <?php endif; ?>
-                            <form action="send.php" method="post">
-                                <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Email</label>
-                                    <input name="email" type="text" id="simpleinput" class="form-control">
-                                </div>
+        </div>
 
-                                <label class="form-label" for="simpleinput">Password</label>
-                                <input name="password" type="password" id="simpleinput" class="form-control">
-                                <button class="btn btn-success mt-3" type="submit">Submit</button>
-                            </form>
+        <div class="col-md-6">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Загруженные картинки
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-content image-gallery">
+                            <div class="row">
+                                <?php foreach ($images as $image): ?>
+                                    <div class="col-md-3 image">
+                                        <img src="img/new/<?php echo $image['image']; ?>">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </main>
 
 
@@ -73,6 +95,7 @@ session_start();
 </script>
 </body>
 </html>
+
 
 
 
