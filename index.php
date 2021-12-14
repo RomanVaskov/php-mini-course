@@ -37,28 +37,16 @@ session_start();
                 <div class="panel-content">
                     <div class="panel-content">
                         <div class="form-group">
-                            <?php if (isset($_SESSION['danger'])): ?>
-                                <div class="alert alert-danger fade show" role="alert">
-                                    <?php echo $_SESSION['danger'];
-                                    unset($_SESSION['danger']);
-                                    ?>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (isset($_SESSION['success'])): ?>
-                                <div class="alert alert-success fade show" role="alert">
-                                    <?php echo $_SESSION['success'];
-                                    unset($_SESSION['success']);
-                                    ?>
+                            <?php if (isset($_SESSION['message'])): ?>
+                                <div class="alert alert-info fade show" role="alert">
+                                    <?php echo $_SESSION['message']; ?>
                                 </div>
                             <?php endif; ?>
                             <form action="send.php" method="post">
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="email">
+                                    <label class="form-label" for="simpleinput">Text</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="text">
                                 </div>
-
-                                <label class="form-label" for="simpleinput">Password</label>
-                                <input type="password" id="simpleinput" class="form-control" name="password">
                                 <button class="btn btn-success mt-3" type="submit">Submit</button>
                             </form>
                         </div>
