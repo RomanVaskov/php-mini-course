@@ -10,3 +10,4 @@
 8. [Lesson08](https://github.com/RomanVaskov/php-mini-course/tree/lesson08)
 9. [Lesson09](https://github.com/RomanVaskov/php-mini-course/tree/lesson09)
 10. [Lesson10](https://github.com/RomanVaskov/php-mini-course/tree/lesson10)
+11. [Lesson11](https://github.com/RomanVaskov/php-mini-course/tree/lesson11)
