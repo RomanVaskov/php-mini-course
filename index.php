@@ -1,11 +1,3 @@
-<?php
-$pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
-$sql = "SELECT * FROM students";
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +19,7 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="mod-bg-1 mod-nav-link ">
 <main id="js-page-content" role="main" class="page-content">
+
     <div class="col-md-6">
         <div id="panel-1" class="panel">
             <div class="panel-hdr">
@@ -40,36 +33,14 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <h5 class="frame-heading">
-                        Обычная таблица
-                    </h5>
-                    <div class="frame-wrap">
-                        <table class="table m-0">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($users as $user): ?>
-                                <tr>
-                                    <th scope="row"><?php echo $user['id']; ?></th>
-                                    <td><?php echo $user['first_name']; ?></td>
-                                    <td><?php echo $user['last_name']; ?></td>
-                                    <td><?php echo $user['username']; ?></td>
-                                    <td>
-                                        <a href="show.php?id=<?php echo $user['id']; ?>" class="btn btn-info">Просмотр</a>
-                                        <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning">Изменить</a>
-                                        <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">Удалить</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                    <div class="panel-content">
+                        <div class="form-group">
+                            <form action="send.php" method="post">
+                                <label class="form-label" for="simpleinput">Text</label>
+                                <input type="text" id="simpleinput" class="form-control" name="text">
+                                <button class="btn btn-success mt-3" type="submit">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

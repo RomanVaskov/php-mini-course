@@ -1,9 +1,9 @@
 <?php
+$text = $_POST['text'];
 $pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
-$sql = "UPDATE students SET first_name=:first_name, last_name=:last_name, username=:username WHERE id=:id";
+$sql = "INSERT INTO texts (text) VALUES (:text)";
 $statement = $pdo->prepare($sql);
-$statement->execute($_POST);
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+$statement->execute(['text' => $text]);
 
 header('Location: /index.php');
 ?>
