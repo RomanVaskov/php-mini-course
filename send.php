@@ -3,7 +3,6 @@ session_start();
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$password = password_hash($password, PASSWORD_DEFAULT);
 
 $pdo = new PDO("mysql:host=localhost;dbname=php_course;", "root", "");
 
@@ -12,20 +11,21 @@ $statement = $pdo->prepare($sql);
 $statement->execute(['email' => $email]);
 $task = $statement->fetch(PDO::FETCH_ASSOC);
 
-if (!empty($task)) {
-    $message = "Этот эл адрес уже занят другим пользователем.";
+if (empty($task)) {
+    $message = "Неверный логин или пароль.";
     $_SESSION['danger'] = $message;
 
     header("Location: /index.php");
     exit;
+} elseif (!password_verify($password, $task['password']) || $task['email'] !== $email) {
+    $message = "Неверный логин или пароль.";
+    $_SESSION['danger'] = $message;
+
+    header("Location: /index.php");
+    exit;
+} elseif (password_verify($password, $task['password']) && $task['email'] == $email) {
+    $message = "Вы успешно авторизовались";
+    $_SESSION['success'] = $message;
+
+    header('Location: /index.php');
 }
-
-$sql = "INSERT INTO accounts (email,password) VALUES (:email,:password)";
-$statement = $pdo->prepare($sql);
-$statement->execute(['email' => $email, 'password' => $password]);
-
-$message = "Вы успешно зарегистрировались";
-$_SESSION['success'] = $message;
-
-header('Location: /index.php');
-?>
