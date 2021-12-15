@@ -103,19 +103,6 @@ $images = $_SESSION['images'];
 <script src="js/vendors.bundle.js"></script>
 <script src="js/app.bundle.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        function delFile(e) {
-            let target = e.target;
-            target.addEventListener("click", function() {
-                let result = window.confirm('Вы уверены?');
-                if (result) {
-                    location.replace(target.href);
-                }
-            });
-        }
-    });
-</script>
-<script>
     // default list filter
     initApp.listFilter($('#js_default_list'), $('#js_default_list_filter'));
     // custom response message
