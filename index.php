@@ -68,11 +68,26 @@ $images = $_SESSION['images'];
                     <div class="panel-content">
                         <div class="panel-content image-gallery">
                             <div class="row">
-                                <?php foreach ($images as $image): ?>
-                                    <div class="col-md-3 image">
-                                        <img src="img/new/<?php echo $image['image']; ?>">
-                                    </div>
-                                <?php endforeach; ?>
+                                <?php if (empty($images)): ?>
+                                <div class="col-md-3 image">
+                                    <img src="img/demo/gallery/1.jpg">
+                                </div>
+                                <?php else: ?>
+                                    <script>
+                                        function delFile(e) {
+                                            e.preventDefault();
+                                            if (confirm('Вы уверены?')) {
+                                                location.replace(e.target.href);
+                                            }
+                                        }
+                                    </script>
+                                    <?php foreach ($images as $image): ?>
+                                        <div class="col-md-3 image">
+                                            <img src="img/new/<?php echo $image['image']; ?>">
+                                            <a class="btn btn-danger delete-file" href="delete.php?id=<?php echo $image['id']; ?>&name=<?php echo $image['image']; ?>" onclick="delFile(event);">Удалить</a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -87,6 +102,19 @@ $images = $_SESSION['images'];
 
 <script src="js/vendors.bundle.js"></script>
 <script src="js/app.bundle.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function delFile(e) {
+            let target = e.target;
+            target.addEventListener("click", function() {
+                let result = window.confirm('Вы уверены?');
+                if (result) {
+                    location.replace(target.href);
+                }
+            });
+        }
+    });
+</script>
 <script>
     // default list filter
     initApp.listFilter($('#js_default_list'), $('#js_default_list_filter'));
